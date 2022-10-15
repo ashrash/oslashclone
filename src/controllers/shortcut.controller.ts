@@ -40,6 +40,18 @@ class ShortcutController {
     }
   };
 
+  public deleteShortcut = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const shortLink: string  = req.params.shortLink;
+      const email: string  = req.params.email;
+      const findOneUserData: UserData = await this.shortcutService.deleteShortcut(email, shortLink);
+
+      res.status(200).json({ data: findOneUserData, message: 'findOne' });
+    } catch (error) {
+      next(error);
+    }
+  };
+
 }
 
 export default ShortcutController;

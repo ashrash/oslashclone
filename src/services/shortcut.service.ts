@@ -76,6 +76,22 @@ class ShortcutService {
       throw new HttpException(500, `Something went wrong ${e}`);
     }
   }
+  
+  public async deleteShortcut(email: string, shortLink: string): Promise<UserShortcut| null> {
+    if (nullCheck(email)) throw new HttpException(400, "email is undefined");
+    try {
+      const deletedShortcut = await Db.Shortcut.destroy({
+        where: {
+          short_link: shortLink, email_id: email,
+        }
+      });
+  
+      return deletedShortcut;
+    } catch(e){
+      logger.error(`Something went wrong ${e}`);
+      throw new HttpException(500, `Something went wrong ${e}`);
+    }
+  }
 
 
 }

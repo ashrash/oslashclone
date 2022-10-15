@@ -19,6 +19,8 @@ class ShortcutRoute implements Routes {
     this.router.post(`${this.route}/search/`, validationMiddleware(SearchShortcutDto, 'body'), verifyToken,
     this.shortcutController.searchShortcut);
     this.router.post(`${this.route}/create/:email`, verifyToken, this.shortcutController.createShortcut);
+    this.router.delete(`${this.route}/delete/:email/:shortLink`,  verifyToken,  this.shortcutController.deleteShortcut);
+
     
   }
 }
