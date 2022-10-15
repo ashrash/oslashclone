@@ -1,6 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
-import sequelize from './config/mysql';
+import databaseObj from './models';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { Routes } from './interfaces/routes.interface';
@@ -38,6 +38,7 @@ class App {
   }
 
   private connectToDatabase() {
+    const { sequelize } = databaseObj;
     sequelize.authenticate().then(() => {
       console.log('Connection has been established successfully.');
     }).catch((error) => {

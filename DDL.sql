@@ -1,9 +1,10 @@
 -- DB DDL script for OSlash clone
 
-CREATE TABLE `user`
+CREATE TABLE `users`
 (
- `id`           bigint NOT NULL ,
+ `id`           bigint NOT NULL AUTO_INCREMENT,
  `email`        varchar(100) NOT NULL ,
+ `name`         varchar(100) NOT NULL ,
  `password`     varchar(100) NOT NULL ,
  `created_dttm` datetime NOT NULL ,
  `updated_dttm` datetime NOT NULL ,
