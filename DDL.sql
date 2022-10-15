@@ -20,7 +20,7 @@ CREATE TABLE `shortcuts`
  `created_dttm` datetime NOT NULL ,
  `updated_dttm`  datetime NOT NULL ,
 
-PRIMARY KEY (`short_link`),
+PRIMARY KEY (`short_link`, `email_id`),
 KEY `FK_2` (`email_id`),
 CONSTRAINT `FK_1` FOREIGN KEY `FK_2` (`email_id`) REFERENCES `users` (`email`)
 );
