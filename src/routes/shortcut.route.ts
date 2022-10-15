@@ -1,3 +1,5 @@
+import { SearchShortcutDto } from '../dtos/shortcut.dto';
+import validationMiddleware from '../middleware/validation.middleware';
 import { Router } from 'express';
 import ShortcutController from '../controllers/shortcut.controller';
 import { Routes } from '../interfaces/routes.interface';
@@ -14,7 +16,10 @@ class ShortcutRoute implements Routes {
 
   private initializeRoutes() {
     this.router.get(`${this.route}/:email`, verifyToken, this.shortcutController.getShortcutsByEmail);
-    this.router.post(`${this.route}/:email`, verifyToken, this.shortcutController.createShortcut);
+    this.router.post(`${this.route}/search/`, validationMiddleware(SearchShortcutDto, 'body'), verifyToken,
+    this.shortcutController.searchShortcut);
+    this.router.post(`${this.route}/create/:email`, verifyToken, this.shortcutController.createShortcut);
+    
   }
 }
 

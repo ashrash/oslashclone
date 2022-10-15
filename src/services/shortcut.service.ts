@@ -4,8 +4,10 @@ import * as R from 'ramda';
 import * as whatwg from 'whatwg-url';
 import Db from '../models';
 import { nullCheck } from '../utils/ramda';
-import { ShortcutData } from '@/interfaces/shortcuts.interface';
+import { SearchShortcut, ShortcutData } from '@/interfaces/shortcuts.interface';
 import { logger } from '../utils/logger';
+
+import { Op } from 'sequelize';
 
 class ShortcutService {
 
@@ -19,6 +21,33 @@ class ShortcutService {
         },
         where: {
             email,
+        }
+      });
+    const userShortcuts: UserShortcut = R.head(resultData);
+    if(!nullCheck(userShortcuts)) {
+      return userShortcuts;
+    }
+    throw new HttpException(204, "Shortcuts not found");
+  }
+
+  public async searchShortcut(shortcut: SearchShortcut): Promise<UserShortcut| null> {
+    if (nullCheck(shortcut)) throw new HttpException(400, "email is undefined");
+    const {email, short_link, description } = shortcut;
+    const resultData: UserShortcut = await Db.User.findAll({
+        include: {
+          model: Db.Shortcut,
+          required: true,
+          where: {
+            short_link: {
+              [Op.like]: `%${short_link || ''}%`,
+            },
+            description: {
+              [Op.like]: `%${description || ''}%`,
+            },
+          }
+        },
+        where: {
+          email,
         }
       });
     const userShortcuts: UserShortcut = R.head(resultData);

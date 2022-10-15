@@ -7,3 +7,9 @@ export interface ShortcutData {
     update_dttm: string;
 }
 
+export interface SearchShortcut {
+    email: string;
+    short_link: string;
+    description: string;
+    tags: string[];
+}

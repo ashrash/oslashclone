@@ -15,3 +15,19 @@ export class CreateShortcutDto {
     public url: string;
 
 }
+
+
+export class SearchShortcutDto {
+
+    @IsString()
+    @IsNotEmpty()
+    public email: string;
+
+    @IsString()
+    public short_link: string;
+
+    public description: string;
+
+    public tags: string[];
+
+}
