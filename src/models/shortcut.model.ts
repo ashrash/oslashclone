@@ -10,15 +10,16 @@ const Shortcut = (sequelize, Sequelize, DataTypes) => {
         email_id: {
           type: DataTypes.STRING,
         },
-        description: {
-          type: DataTypes.STRING
+        url: {
+          type: DataTypes.STRING,
         },
-        created_dttm: {
+        description: {
           type: DataTypes.STRING
         }
       },
       {
-        timestamps: false
+        createdAt: "created_dttm",
+        updatedAt: "updated_dttm"
       }
     );
     return Shortcut;

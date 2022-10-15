@@ -15,9 +15,10 @@ CREATE TABLE `shortcuts`
 (
  `short_link` varchar(60) NOT NULL ,
  `email_id`     varchar(100) NOT NULL ,
+ `url` 			varchar(100) NOT NULL ,
  `description`  varchar(250) NOT NULL ,
  `created_dttm` datetime NOT NULL ,
- `update_dttm`  datetime NOT NULL ,
+ `updated_dttm`  datetime NOT NULL ,
 
 PRIMARY KEY (`short_link`),
 KEY `FK_2` (`email_id`),
