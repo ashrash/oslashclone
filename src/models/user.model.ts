@@ -15,8 +15,7 @@ const User = (sequelize, Sequelize, DataTypes) => {
         }
       },
       {
-        createdAt: "created_dttm",
-        updatedAt: "updated_dttm"
+        timestamps: false
       }
     );
     return User;

@@ -6,6 +6,7 @@ import { logger } from '../utils/logger';
 
 import { nullCheck } from '../utils/ramda';
 import { generateAccessToken } from '../utils/jwt';
+import e from 'express';
 
 class UserService {
 
@@ -48,6 +49,26 @@ class UserService {
     }
     
   }
+
+  public async login(userData: UserData): Promise<string | null> {
+    const { email } = userData;
+    try {
+        const userResult: UserData | null = await this.findUserDataByEmail(email);
+        if (!userResult) throw new HttpException(400, `Email id: ${email} does not exists`);
+        const { password } = userData;
+        if(R.equals(password, R.prop('password', userResult))) {
+          const token: string = generateAccessToken({ email });
+          return token;
+        } else {
+          throw new HttpException(400, `Email id: ${password} is incorrect`);
+        }
+    } catch (e) {
+      logger.info('Unusual error occured please try again later');
+    }
+  }
+
+  // public async logout(userData: UserData): Promise<string | null> {
+  // }
 
 }
 

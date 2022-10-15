@@ -11,7 +11,7 @@ PRIMARY KEY (`email`)
 );
 
 
-CREATE TABLE `shortcut`
+CREATE TABLE `shortcuts`
 (
  `short_link` varchar(60) NOT NULL ,
  `email_id`     varchar(100) NOT NULL ,
@@ -36,5 +36,5 @@ CREATE TABLE `tags`
 
 PRIMARY KEY (`id`),
 KEY `FK_2` (`short_link_id`),
-CONSTRAINT `FK_3` FOREIGN KEY `FK_2` (`short_link_id`) REFERENCES `shortcut` (`short_link`)
+CONSTRAINT `FK_3` FOREIGN KEY `FK_2` (`short_link_id`) REFERENCES `shortcuts` (`short_link`)
 );
