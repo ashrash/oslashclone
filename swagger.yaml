@@ -1,0 +1,104 @@
+tags:
+- name: Users
+  description: Users API
+
+paths:
+  /users:
+    get:
+      tags:
+      - Users
+      summary: Find All Users
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+    post:
+      tags:
+      - Users
+      summary: Add User
+      parameters:
+      - name: body
+        in: body
+        description: user Data
+        required: true
+        schema:
+          $ref: '#/definitions/users'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        500:
+          description: 'Server Error'
+    put:
+      tags:
+      - Users
+      summary: Update User By _id
+      parameters:
+      - name: body
+        in: body
+        description: user Data
+        required: true
+        schema:
+          $ref: '#/definitions/users'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+  /users/{_id}:
+    get:
+      tags:
+      - Users
+      summary: Find User By id
+      parameters:
+      - name: _id
+        in: path
+        description: User id
+        required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+    delete:
+      tags:
+      - Users
+      summary: Delete User By id
+      parameters:
+      - name: _id
+        in: path
+        description: user Id
+        required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+definitions:
+  users:
+    type: object
+    required:
+        - _id
+        - name
+    properties:
+      _id:
+        type: number
+        description: User Id
+      name:
+        type: string
+        description: User Name
+schemes:
+ - https
+ - http
