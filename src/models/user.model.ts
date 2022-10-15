@@ -7,6 +7,9 @@ const User = (sequelize, Sequelize, DataTypes) => {
           unique: true,
           primaryKey: true
         },
+        name: {
+          type: DataTypes.STRING,
+        },
         password: {
           type: DataTypes.STRING
         }

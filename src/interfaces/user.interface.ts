@@ -1,8 +1,13 @@
 export interface UserData {
-    _id: number;
     email: string;
+    name: string;
     password: string;
     created_dttm: string;
     updated_dttm: string;
 }
   
+
+export interface CreatedUserData {
+    createdUser: UserData,
+    token: string;
+}
