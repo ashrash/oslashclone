@@ -1,4 +1,5 @@
-# Node TS BoilerPlate
+# Oslashclone
+
 
 Tech: Node + Express + MySQL/sequelize + Typescript + Swagger + Docker
 
